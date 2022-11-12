@@ -30,6 +30,7 @@ jobs:
 
       - name: Install packages
         run: python pytest install
+      - name: Install
         run: python coverage install
 
       - name: Create report
