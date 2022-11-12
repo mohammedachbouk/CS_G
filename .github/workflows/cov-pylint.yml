@@ -1,0 +1,57 @@
+name: Coverage - Pylint
+on:
+  push:
+    tags:
+      - 'v*'
+    branches: [ main ]
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10.6"]
+        poetry-version: ["1.2.1"]
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+
+      - name: Install packages
+        run: python -m poetry install
+
+      - name: Create report
+        run: poetry run coverage run -m pytest
+      - name: Generate Coverage Badge
+        uses: tj-actions/coverage-badge-py@v1.8
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v9
+        id: changed_files
+        with:
+          files: coverage.svg
+      - name: Commit files
+        if: steps.changed_files.outputs.files_changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add coverage.svg
+          git commit -m "auto: Updated coverage.svg"
+      - name: Push changes
+        if: steps.changed_files.outputs.files_changed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          branch: ${{ github.ref }}
+          force: true
+          tags: true
+
+      #- name: Check src code with Pylint
+      #  run: poetry run pylint src
