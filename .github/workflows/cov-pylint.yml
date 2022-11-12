@@ -1,11 +1,9 @@
 name: Coverage - Pylint
 on:
   workflow_dispatch:
-  check_run:
-    types: [rerequested, completed]
-  #push:
-    #tags:
-     # - 'v*'
+  push:
+    tags:
+      - 'v*'
     branches: [ main ]
 
 jobs:
