@@ -1,6 +1,8 @@
 name: Coverage - Pylint
 on:
-  push:
+  check_run:
+    types: [rerequested, completed]
+  #push:
     #tags:
      # - 'v*'
     branches: [ main ]
