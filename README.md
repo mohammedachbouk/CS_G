@@ -16,4 +16,5 @@ The project is built into three main sections:
 - Note: 
  > As the partitionning of this project indicates, i included an older version of the solution which works to some degree if executed manually but it is very unsatisfactory and unprofessional. So after inquiring from different groups, i managed to build the newer solution.
 
+To run the new solution, create a new folder named solutions containing Users.txt for the output  
 The project was built using poetry and documented using sphinx, with some automated Github actions for test and things of such.
