@@ -1,4 +1,4 @@
-# Soware engineering at scale
+# Software engineering at scale
 Mohammed Achbouk entry for computer science project 
 ![coverage badge](./coverage.svg)
 
