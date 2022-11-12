@@ -26,10 +26,11 @@ jobs:
           poetry-version: ${{ matrix.poetry-version }}
 
       - name: Install packages
-        run: python -m poetry install
+        run: python pytest install
+        run: python coverage install
 
       - name: Create report
-        run: poetry run coverage run -m pytest
+        run: coverage run -m pytest
       - name: Generate Coverage Badge
         uses: tj-actions/coverage-badge-py@v1.8
       - name: Verify Changed files
