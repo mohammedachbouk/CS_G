@@ -18,3 +18,6 @@ The project is built into three main sections:
 
 To run the new solution, create a new folder named solutions containing Users.txt for the output  
 The project was built using poetry and documented using sphinx, with some automated Github actions for test and things of such.
+
+- Note 2:
+ > Unresolved issue with online documentation. The documentation was generated correctly with sphinx locally but did not manage to deploy it online since it was not pushed from a gh-pages branch, therefore gh did not recognize it as documentation. 
